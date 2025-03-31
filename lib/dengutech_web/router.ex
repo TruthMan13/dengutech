@@ -21,9 +21,21 @@ defmodule DengutechWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", DengutechWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", DengutechWeb do
+     pipe_through :api
+     get "/cases/diagnosis_and_date_of_onset", CaseController, :diagnosis_and_date_of_onset
+     get "/filtered_cases", CaseController, :index_filtered
+     resources "/cases", CaseController, as: :cases
+     post "/run_learning", CaseController, :run_learning
+
+
+   end
+   scope "/api", DengutechWeb do
+    pipe_through :api
+
+    resources "/base_conocimientos", BaseConocimientoController, only: [:index, :create, :show, :update, :delete]
+    post "/base_conocimientos/predict", BaseConocimientoController, :predict
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:dengutech, :dev_routes) do
