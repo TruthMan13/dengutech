@@ -50,7 +50,7 @@ defmodule DengutechWeb.BaseConocimientoController do
 
     vector = Enum.map(required_fields, &Map.get(params, &1, nil))
 
-    # Validar que el vector es numérico y tiene 15 elementos
+
     if length(vector) == 15 and Enum.all?(vector, &is_number/1) do
       case Knowledge.fetch_and_transform_data() do
         {:error, reason} ->
@@ -59,7 +59,7 @@ defmodule DengutechWeb.BaseConocimientoController do
           |> json(%{error: reason})
 
         {pesos, centros} ->
-          # Llama a predict con vector, pesos y centros
+
           prediction = SistemaExperto.Learning.predict(vector, centros, pesos)
 
           conn

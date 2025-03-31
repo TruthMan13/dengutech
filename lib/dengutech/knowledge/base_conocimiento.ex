@@ -8,7 +8,7 @@ defmodule Dengutech.Knowledge.BaseConocimiento do
     timestamps(type: :utc_datetime)
   end
 
-  @doc false
+
   def changeset(base_conocimiento, attrs) do
     base_conocimiento
     |> cast(attrs, [:data])
