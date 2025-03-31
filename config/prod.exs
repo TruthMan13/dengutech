@@ -17,7 +17,7 @@ config :swoosh, local: false
 config :logger, level: :info
 
 config :dengutech, Dengutech.Repo,
-  url: System.get_env("postgresql://dengutech_dev_user:3WyJhG1P6k91lNCRdz6TS0DoIf7ThyiB@dpg-cvkvndgdl3ps738dp7ug-a.oregon-postgres.render.com/dengutech_dev"),
+  url: System.get_env("postgresql://dengutechdb_user:51pl13A338dv57YJgAKXQ7NzbS4kAXDb@dpg-cvl1imhr0fns73887h1g-a.oregon-postgres.render.com/dengutechdb"),
   pool_size: 15,  # Ajusta según tus necesidades
   ssl: [verify: :verify_peer]
 # Runtime production configuration, including reading
