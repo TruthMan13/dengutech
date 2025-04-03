@@ -16,9 +16,5 @@ config :swoosh, local: false
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :dengutech, Dengutech.Repo,
-  url: System.get_env("postgresql://dengutechdb_user:51pl13A338dv57YJgAKXQ7NzbS4kAXDb@dpg-cvl1imhr0fns73887h1g-a.oregon-postgres.render.com/dengutechdb"),
-  pool_size: 15,  # Ajusta según tus necesidades
-  ssl: [verify: :verify_peer]
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.

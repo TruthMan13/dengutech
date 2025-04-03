@@ -5,8 +5,7 @@ defmodule SistemaExperto.Learning do
   def learn(data, k) do
     casos = Learning.formato_caso(data)
 
-    centros = SistemaExperto.Kmean.cluster(casos, k)
-    centros_ancho = SistemaExperto.Learning.calcular_ancho(centros)
+    centros_ancho =clusterisacion(casos,k)
     matriz_pesos = matriz_random(k, 15)
 
     muevo_peso =
@@ -41,6 +40,21 @@ defmodule SistemaExperto.Learning do
         0
       end
     end)
+  end
+
+  def clusterisacion(caso, k) do
+    centros = SistemaExperto.Kmean.cluster(caso, k)
+    centros_anchos = SistemaExperto.Learning.calcular_ancho(centros)
+    anchos = Enum.map(centros_anchos, fn [_, ancho] -> ancho end)
+
+    # Bucle while que se ejecuta hasta que no haya ceros en 'anchos'
+    if Enum.any?(anchos, fn ancho -> ancho == 0 end) do
+      IO.puts("Se encontraron ceros en los anchos, recalculando...")
+      clusterisacion(caso, k) # Recursión para recalcular
+    else
+      IO.puts("Anchos válidos encontrados.")
+      centros_anchos
+    end
   end
 
   def formato_caso(data) do

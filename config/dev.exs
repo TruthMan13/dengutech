@@ -83,3 +83,5 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+config :dengutech, DengutechWeb.Endpoint,
+  http: [ip: {0, 0, 0, 0}, port: 4000]

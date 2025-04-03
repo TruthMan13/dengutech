@@ -1,16 +1,12 @@
 defmodule DengutechWeb.CaseJSON do
   alias Dengutech.Disease.Case
 
-  @doc """
-  Renders a list of cases.
-  """
+  
   def index(%{cases: cases}) do
     %{data: for(case <- cases, do: data(case))}
   end
 
-  @doc """
-  Renders a single case.
-  """
+ 
   def show(%{case: case}) do
     %{data: data(case)}
   end
