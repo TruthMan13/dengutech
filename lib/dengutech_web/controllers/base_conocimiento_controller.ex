@@ -66,6 +66,7 @@ defmodule DengutechWeb.BaseConocimientoController do
           |> put_status(:ok)
           |> json(%{prediction: prediction})
       end
+      
     else
       conn
       |> put_status(:unprocessable_entity)
