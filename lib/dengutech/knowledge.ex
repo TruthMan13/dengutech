@@ -46,6 +46,7 @@ defmodule Dengutech.Knowledge do
       }
     })
     |> Repo.insert()
+
   end
 
   def get_first_record_from_base do
@@ -58,20 +59,19 @@ defmodule Dengutech.Knowledge do
     end
   end
   def transform_record_to_tuple(entity) do
-    IO.puts("estamos aqui")
+
 
     data = Map.get(entity, :data) || %{}
 
-    IO.puts("Y ahora aqui")
+
     pesos = Map.get(data, "matrix1") || []
 
-    IO.puts("tambien aqui")
+
     centros =
       Map.get(data, "matrix2", [])
 
-      IO.puts("He aqui el problema")
-    IO.inspect(pesos, label: "Pesos procesados (matrix1)")
-    IO.inspect(centros, label: "Centros procesados como listas de listas (matrix2)")
+
+
 
     if is_list(pesos) and is_list(centros) do
       {pesos, centros}

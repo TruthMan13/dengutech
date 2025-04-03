@@ -131,6 +131,7 @@ defmodule Dengutech.Disease do
   end
 
   def get_cases_as_tuples do
+
     # Obtener todos los casos de la tabla `cases`
     cases = list_cases()
 
@@ -143,8 +144,10 @@ defmodule Dengutech.Disease do
       |> Map.drop([:diagnosis, :id, :date_of_onset, :updated_at, :inserted_at]) # Filtra solo los campos necesarios.
 
 
+
       diagnosis_list = List.duplicate(0, 3)
-      diagnosis_list = List.replace_at(diagnosis_list, diagnosis - 1, 1)
+
+      diagnosis_list = List.replace_at(diagnosis_list, diagnosis, 1)
 
       {
         Map.values(rest_of_values) |> Enum.map(&(&1 * 1.0)),
@@ -157,11 +160,11 @@ defmodule Dengutech.Disease do
     data_tuples = get_cases_as_tuples()
 
     # Entero que necesitas para la función learning
-    IO.inspect(data_tuples)
+   # IO.inspect(data_tuples)
 
     # Llamar a la función `learning`
     learning_result =SistemaExperto.Learning.learn(data_tuples, 3)
-
+    IO.inspect(learning_result, label: "Estas pasando esto")
     # Guardar el resultado en la base de datos
     Knowledge.save_learning_result(learning_result)
   end

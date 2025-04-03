@@ -30,7 +30,7 @@ end
 def distancia_euclidiana([punto1, punto2]) do
 
   punto2 = List.flatten(punto2)
-  IO.inspect(punto2, label: "Punto 2 después de aplanar")
+
   Enum.zip(punto1, punto2)
   |> Enum.map(fn {x, y} ->
     (x - y) ** 2

@@ -101,11 +101,10 @@ defmodule SistemaExperto.Learning do
 
   def vecinos_media(centro, vecinos) do
 
-    IO.inspect(centro, label: "Centro actual")
-    IO.inspect(vecinos, label: "Vecinos recibidos")
+
 
     distancias = SistemaExperto.Learning.calcular_mediana(centro, vecinos)
-    IO.inspect(distancias, label: "Distancias calculadas")
+
 
 
     if Enum.any?(distancias, &is_list/1) do
@@ -113,14 +112,13 @@ defmodule SistemaExperto.Learning do
     end
 
     distancias_de_kvecinos = Enum.sort(distancias) |> Enum.reverse() |> Enum.take(3)
-    IO.inspect(distancias_de_kvecinos, label: "Distancias de k vecinos")
+
 
     if length(distancias_de_kvecinos) == 0 do
       raise "No se encontraron distancias válidas para el centro #{inspect(centro)}"
     end
 
     media = Enum.sum(distancias_de_kvecinos) / length(distancias_de_kvecinos)
-    IO.inspect(media, label: "Media calculada para el centro #{inspect(centro)}")
 
     [centro, media]
   end

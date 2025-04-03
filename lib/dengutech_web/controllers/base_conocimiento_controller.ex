@@ -49,7 +49,7 @@ defmodule DengutechWeb.BaseConocimientoController do
     ]
 
     vector = Enum.map(required_fields, &Map.get(params, &1, nil))
-
+    IO.inspect(vector, label: "pa ve que tienes ahi")
 
     if length(vector) == 15 and Enum.all?(vector, &is_number/1) do
       case Knowledge.fetch_and_transform_data() do
